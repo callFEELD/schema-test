@@ -21,8 +21,7 @@
     "properties": {
         "universalis": {
             "anyOf": [
-                { "type": "string" },
-                { "type": "number" }
+                { "$ref": "/schema/versions.json" }
             ]
         },
 

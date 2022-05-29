@@ -1,4 +1,5 @@
 {
+    "$id": "https://callFEELD.github.io/schema-test/schema/struct/struct.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
 
     "if": {
@@ -7,7 +8,7 @@
     "then": {
         "properties": { 
             "dataType": { "anyOf": [
-                {"$ref": "https://callFEELD.github.io/schema-test/schema/datatypes"},
+                {"$ref": "https://callFEELD.github.io/schema-test/schema/datatypes.json"},
                 {"type": "string"}
             ]},
             "properties": {

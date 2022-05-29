@@ -1,4 +1,5 @@
 {
+    "$id": "https://callFEELD.github.io/schema-test/schema/const/const.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
 
     "if": {
@@ -6,7 +7,7 @@
     },
     "then": {
         "properties": { 
-            "dataType": { "$ref": "https://callFEELD.github.io/schema-test/schema/datatypes" },
+            "dataType": { "$ref": "https://callFEELD.github.io/schema-test/schema/datatypes.json" },
             "value": { "anyOf": [
                 {"type": "boolean"},
                 {"type": "string"},

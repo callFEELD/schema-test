@@ -13,8 +13,8 @@
             },
             "required": ["type"],
             "allOf": [
-                { "$ref": "/struct/struct.json" },
-                { "$ref": "/const/const.json"}
+                { "$ref": "/schema/struct/struct.json" },
+                { "$ref": "/schema/const/const.json"}
             ]
         }
     },

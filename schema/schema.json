@@ -2,6 +2,19 @@
     "$id": "https://callFEELD.github.io/schema-test/schema/schema.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
 
+    "$defs": {
+        "dataTypes": {
+            "enum": [
+                "uint8", "int8",
+                "uint16", "int16",
+                "uint32", "int32",
+                "uint64", "int64",
+                "real32", "real64",
+                "string", "bool"
+            ]
+        }
+    },
+
     "type": "object",
     "patternProperties": {
         "^(?!universalis$)(?!meta$)(?!import$).*$": {
@@ -13,15 +26,97 @@
             },
             "required": ["type"],
             "allOf": [
-                { "$ref": "https://callFEELD.github.io/schema-test/schema/struct/struct.json" },
-                { "$ref": "https://callFEELD.github.io/schema-test/schema/const/const.json"}
+                {
+                    "if": {
+                        "properties": { "type": {"const": "struct" } }
+                    },
+                    "then": {
+                        "properties": { 
+                            "dataType": {"type": "string"},
+                            "properties": {
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "$comment": "Short form of properties",
+                                            "type": "object",
+                                            "patternProperties": {
+                                                "^.*$": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "$comment": "Long form of properties",
+                                            "type": "object",
+                                            "patternProperties": {
+                                                "^.*$": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "type": {"type": "string"},
+                                                        "description": {"type": "string"},
+                                                        "unit": {"type": "string"},
+                                                        "range": {
+                                                            "type": "array",
+                                                            "minItems": 2,
+                                                            "maxItems": 2,
+                                                            "items": {
+                                                                "anyOf": [
+                                                                    {"type": "boolean"},
+                                                                    {"type": "string"},
+                                                                    {"type": "number"},
+                                                                    {"type": "integer"}
+                                                                ]
+                                                            }
+                                                        }
+                                                    },
+                                                    "required": ["type"],
+                                                    "additionalProperties": true
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            "description": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["properties"],
+                        "additionalProperties": true
+                    }
+                },
+                {
+                    "if": {
+                        "properties": { "type": {"const": "const" } }
+                    },
+                    "then": {
+                        "properties": { 
+                            "dataType": { "$ref": "#/$defs/dataTypes" },
+                            "value": { "anyOf": [
+                                {"type": "boolean"},
+                                {"type": "string"},
+                                {"type": "number"},
+                                {"type": "integer"}
+                            ]},
+                            "description": {
+                                "type": "string"
+                            },
+                            "unit": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["dataType", "value"],
+                        "additionalProperties": true
+                    }
+                }
             ]
         }
     },
     "properties": {
         "universalis": {
             "anyOf": [
-                { "$ref": "https://callFEELD.github.io/schema-test/schema/versions.json" }
+                { "enum": ["0.1"] }
             ]
         },
 

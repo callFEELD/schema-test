@@ -1,0 +1,22 @@
+{
+    "$id": "https://callFEELD.github.io/schema-test/schema/enum/enum.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+
+    "if": {
+        "properties": { "type": {"const": "enum" } }
+    },
+    "then": {
+        "properties": { 
+            "dataType": { "anyOf": [
+                {"$ref": "https://callFEELD.github.io/schema-test/schema/datatypes.json"},
+                {"type": "string"}
+            ]},
+            "members": {
+                "type": "array",
+                "items": { "$ref": "https://callFEELD.github.io/schema-test/schema/enum/member.json" }
+            }
+        },
+        "required": ["dataType", "members"],
+        "additionalProperties": true
+    }
+}

@@ -14,9 +14,6 @@
                 {"type": "number"},
                 {"type": "integer"}
             ]},
-            "description": {
-                "type": "string"
-            },
             "unit": {
                 "type": "string"
             }

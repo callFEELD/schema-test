@@ -1,5 +1,5 @@
 {
-    "$id": "https://callFEELD.github.io/schema-test/schema",
+    "$id": "https://callFEELD.github.io/schema-test/schema/schema.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
 
     "type": "object",

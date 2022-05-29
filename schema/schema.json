@@ -1,0 +1,44 @@
+{
+    "$id": "https://callFEELD.github.io/schema-test/schema",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+
+    "type": "object",
+    "patternProperties": {
+        "^(?!universalis$)(?!meta$)(?!import$).*$": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "enum": ["struct", "enum", "const"]
+                }
+            },
+            "required": ["type"],
+            "allOf": [
+                { "$ref": "/struct/struct.json" },
+                { "$ref": "/const/const.json"}
+            ]
+        }
+    },
+    "properties": {
+        "universalis": {
+            "anyOf": [
+                { "type": "string" },
+                { "type": "number" }
+            ]
+        },
+
+        "import": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+
+        "meta": {
+            "type": "object",
+            "additionalProperties": true
+        }
+    },
+    "required": [
+        "universalis"
+    ]
+}

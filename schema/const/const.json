@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+
+    "if": {
+        "properties": { "type": {"const": "const" } }
+    },
+    "then": {
+        "properties": { 
+            "dataType": { "$ref": "/datatypes" },
+            "value": { "anyOf": [
+                {"type": "boolean"},
+                {"type": "string"},
+                {"type": "number"},
+                {"type": "integer"}
+            ]},
+            "description": {
+                "type": "string"
+            },
+            "unit": {
+                "type": "string"
+            }
+        },
+        "required": ["dataType", "value"],
+        "additionalProperties": true
+    }
+}

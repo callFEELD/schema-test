@@ -6,7 +6,7 @@
     },
     "then": {
         "properties": { 
-            "dataType": { "$ref": "/schema/datatypes" },
+            "dataType": { "$ref": "https://callFEELD.github.io/schema-test/schema/datatypes" },
             "value": { "anyOf": [
                 {"type": "boolean"},
                 {"type": "string"},

@@ -13,15 +13,15 @@
             },
             "required": ["type"],
             "allOf": [
-                { "$ref": "/schema/struct/struct.json" },
-                { "$ref": "/schema/const/const.json"}
+                { "$ref": "https://callFEELD.github.io/schema-test/schema/struct/struct.json" },
+                { "$ref": "https://callFEELD.github.io/schema-test/schema/const/const.json"}
             ]
         }
     },
     "properties": {
         "universalis": {
             "anyOf": [
-                { "$ref": "/schema/versions.json" }
+                { "$ref": "https://callFEELD.github.io/schema-test/schema/versions.json" }
             ]
         },
 

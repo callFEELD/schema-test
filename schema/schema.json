@@ -49,6 +49,9 @@
                     },
                     "then": {
                         "properties": {
+                            "type": {
+                                "const": "struct"
+                            },
                             "dataType": {
                                 "type": "string"
                             },
@@ -137,7 +140,7 @@
                             }
                         },
                         "required": [
-                            "properties"
+                            "type", "properties"
                         ],
                         "additionalProperties": false
                     }
@@ -152,6 +155,9 @@
                     },
                     "then": {
                         "properties": {
+                            "type": {
+                                "const": "const"
+                            },
                             "dataType": {
                                 "$ref": "#/$defs/dataTypes"
                             },
@@ -180,6 +186,7 @@
                             }
                         },
                         "required": [
+                            "type",
                             "dataType",
                             "value"
                         ],
@@ -196,6 +203,9 @@
                     },
                     "then": {
                         "properties": {
+                            "type": {
+                                "const": "enum"
+                            },
                             "dataType": {
                                 "anyOf": [
                                     {
@@ -279,6 +289,7 @@
                             }
                         },
                         "required": [
+                            "type",
                             "dataType",
                             "members"
                         ],

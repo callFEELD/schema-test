@@ -7,8 +7,13 @@
             "$comment": "Short form of member",
             "type": "object",
             "patternProperties": {
-                "^.*$": {
-                    "type": "string"
+                "^.*$": { 
+                    "anyOf": [
+                        {"type": "boolean"},
+                        {"type": "string"},
+                        {"type": "number"},
+                        {"type": "integer"}
+                    ]
                 }
             }
         },

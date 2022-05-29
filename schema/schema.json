@@ -1,39 +1,57 @@
 {
     "$id": "https://callFEELD.github.io/schema-test/schema/schema.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
-
     "$defs": {
         "dataTypes": {
             "enum": [
-                "uint8", "int8",
-                "uint16", "int16",
-                "uint32", "int32",
-                "uint64", "int64",
-                "real32", "real64",
-                "string", "bool"
+                "uint8",
+                "int8",
+                "uint16",
+                "int16",
+                "uint32",
+                "int32",
+                "uint64",
+                "int64",
+                "real32",
+                "real64",
+                "string",
+                "bool"
             ]
         }
     },
-
     "type": "object",
     "patternProperties": {
         "^(?!universalis$)(?!meta$)(?!import$).*$": {
             "type": "object",
             "properties": {
                 "type": {
-                    "enum": ["struct", "enum", "const"]
+                    "enum": [
+                        "struct",
+                        "enum",
+                        "const"
+                    ]
                 },
-                "description": {"type": "string"}
+                "description": {
+                    "type": "string"
+                }
             },
-            "required": ["type"],
+            "required": [
+                "type"
+            ],
             "allOf": [
                 {
                     "if": {
-                        "properties": { "type": {"const": "struct" } }
+                        "properties": {
+                            "type": {
+                                "const": "struct"
+                            }
+                        }
                     },
                     "then": {
-                        "properties": { 
-                            "dataType": {"type": "string"},
+                        "properties": {
+                            "dataType": {
+                                "type": "string"
+                            },
                             "properties": {
                                 "type": "array",
                                 "items": {
@@ -44,8 +62,12 @@
                                             "patternProperties": {
                                                 "^.*$": {
                                                     "anyOf": [
-                                                        {"$ref": "#/$defs/dataTypes"},
-                                                        {"type": "string"}
+                                                        {
+                                                            "$ref": "#/$defs/dataTypes"
+                                                        },
+                                                        {
+                                                            "type": "string"
+                                                        }
                                                     ]
                                                 }
                                             }
@@ -59,90 +81,153 @@
                                                     "properties": {
                                                         "type": {
                                                             "anyOf": [
-                                                                {"$ref": "#/$defs/dataTypes"},
-                                                                {"type": "string"}
+                                                                {
+                                                                    "$ref": "#/$defs/dataTypes"
+                                                                },
+                                                                {
+                                                                    "type": "string"
+                                                                }
                                                             ]
                                                         },
-                                                        "description": {"type": "string"},
-                                                        "unit": {"type": "string"},
+                                                        "description": {
+                                                            "type": "string"
+                                                        },
+                                                        "unit": {
+                                                            "type": "string"
+                                                        },
                                                         "range": {
                                                             "type": "array",
                                                             "minItems": 2,
                                                             "maxItems": 2,
                                                             "items": {
                                                                 "anyOf": [
-                                                                    {"type": "boolean"},
-                                                                    {"type": "string"},
-                                                                    {"type": "number"},
-                                                                    {"type": "integer"}
+                                                                    {
+                                                                        "type": "boolean"
+                                                                    },
+                                                                    {
+                                                                        "type": "string"
+                                                                    },
+                                                                    {
+                                                                        "type": "number"
+                                                                    },
+                                                                    {
+                                                                        "type": "integer"
+                                                                    }
                                                                 ]
                                                             }
+                                                        },
+                                                        "meta": {
+                                                            "type": "object",
+                                                            "additionalProperties": true
                                                         }
                                                     },
-                                                    "required": ["type"],
-                                                    "additionalProperties": true
+                                                    "required": [
+                                                        "type"
+                                                    ],
+                                                    "additionalProperties": false
                                                 }
                                             }
                                         }
                                     ]
                                 }
                             },
-                            "description": {
-                                "type": "string"
+                            "meta": {
+                                "type": "object",
+                                "additionalProperties": true
                             }
                         },
-                        "required": ["properties"],
-                        "additionalProperties": true
+                        "required": [
+                            "properties"
+                        ],
+                        "additionalProperties": false
                     }
                 },
                 {
                     "if": {
-                        "properties": { "type": {"const": "const" } }
+                        "properties": {
+                            "type": {
+                                "const": "const"
+                            }
+                        }
                     },
                     "then": {
-                        "properties": { 
-                            "dataType": { "$ref": "#/$defs/dataTypes" },
-                            "value": { "anyOf": [
-                                {"type": "boolean"},
-                                {"type": "string"},
-                                {"type": "number"},
-                                {"type": "integer"}
-                            ]},
-                            "description": {
-                                "type": "string"
+                        "properties": {
+                            "dataType": {
+                                "$ref": "#/$defs/dataTypes"
+                            },
+                            "value": {
+                                "anyOf": [
+                                    {
+                                        "type": "boolean"
+                                    },
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "number"
+                                    },
+                                    {
+                                        "type": "integer"
+                                    }
+                                ]
                             },
                             "unit": {
                                 "type": "string"
+                            },
+                            "meta": {
+                                "type": "object",
+                                "additionalProperties": true
                             }
                         },
-                        "required": ["dataType", "value"],
-                        "additionalProperties": true
+                        "required": [
+                            "dataType",
+                            "value"
+                        ],
+                        "additionalProperties": false
                     }
                 },
                 {
                     "if": {
-                        "properties": { "type": {"const": "enum" } }
+                        "properties": {
+                            "type": {
+                                "const": "enum"
+                            }
+                        }
                     },
                     "then": {
-                        "properties": { 
-                            "dataType": { "anyOf": [
-                                {"$ref": "#/$defs/dataTypes"},
-                                {"type": "string"}
-                            ]},
+                        "properties": {
+                            "dataType": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/$defs/dataTypes"
+                                    },
+                                    {
+                                        "type": "string"
+                                    }
+                                ]
+                            },
                             "members": {
                                 "type": "array",
-                                "items": { 
+                                "items": {
                                     "anyOf": [
                                         {
                                             "$comment": "Short form of member",
                                             "type": "object",
                                             "patternProperties": {
-                                                "^.*$": { 
+                                                "^.*$": {
                                                     "anyOf": [
-                                                        {"type": "boolean"},
-                                                        {"type": "string"},
-                                                        {"type": "number"},
-                                                        {"type": "integer"}
+                                                        {
+                                                            "type": "boolean"
+                                                        },
+                                                        {
+                                                            "type": "string"
+                                                        },
+                                                        {
+                                                            "type": "number"
+                                                        },
+                                                        {
+                                                            "type": "integer"
+                                                        }
                                                     ]
                                                 }
                                             }
@@ -154,25 +239,50 @@
                                                 "^.*$": {
                                                     "type": "object",
                                                     "properties": {
-                                                        "value": { "anyOf": [
-                                                            {"type": "boolean"},
-                                                            {"type": "string"},
-                                                            {"type": "number"},
-                                                            {"type": "integer"}
-                                                        ]},
-                                                        "description": {"type": "string"}
+                                                        "value": {
+                                                            "anyOf": [
+                                                                {
+                                                                    "type": "boolean"
+                                                                },
+                                                                {
+                                                                    "type": "string"
+                                                                },
+                                                                {
+                                                                    "type": "number"
+                                                                },
+                                                                {
+                                                                    "type": "integer"
+                                                                }
+                                                            ]
+                                                        },
+                                                        "description": {
+                                                            "type": "string"
+                                                        },
+                                                        "meta": {
+                                                            "type": "object",
+                                                            "additionalProperties": true
+                                                        }
                                                     },
-                                                    "required": ["value"],
-                                                    "additionalProperties": true
+                                                    "required": [
+                                                        "value"
+                                                    ],
+                                                    "additionalProperties": false
                                                 }
                                             }
                                         }
                                     ]
                                 }
+                            },
+                            "meta": {
+                                "type": "object",
+                                "additionalProperties": true
                             }
                         },
-                        "required": ["dataType", "members"],
-                        "additionalProperties": true
+                        "required": [
+                            "dataType",
+                            "members"
+                        ],
+                        "additionalProperties": false
                     }
                 }
             ]
@@ -180,16 +290,16 @@
     },
     "properties": {
         "universalis": {
-            "enum": ["0.1"]
+            "enum": [
+                "0.1"
+            ]
         },
-
         "import": {
             "type": "array",
             "items": {
                 "type": "string"
             }
         },
-
         "meta": {
             "type": "object",
             "additionalProperties": true
@@ -197,5 +307,6 @@
     },
     "required": [
         "universalis"
-    ]
+    ],
+    "additionalProperties": false
 }

@@ -6,7 +6,7 @@
     },
     "then": {
         "properties": { 
-            "dataType": { "$ref": "/datatypes" },
+            "dataType": { "$ref": "/schema/datatypes" },
             "value": { "anyOf": [
                 {"type": "boolean"},
                 {"type": "string"},
